@@ -1,25 +1,37 @@
-# Projeto Banco de Dados - PROJETOBD
+# Projeto de Banco de Dados Relacional - Oracle SQL
 
 ## 📌 Sobre o projeto
-Este projeto tem como objetivo a criação e modelagem de um banco de dados relacional, com scripts SQL organizados para criação do banco, tabelas e inserção de dados.
+Projeto completo de modelagem de banco de dados simulando um sistema de controle de filmes, incluindo atores, diretores e premiações.
 
-## 🧱 Estrutura do repositório
+O projeto percorre todas as etapas de um ciclo real de desenvolvimento de banco de dados, desde a modelagem até a implementação no Oracle Database.
 
-- docs/ → Documentação do projeto
-- imagens/ → Imagens e diagramas
-- scripts/ → Scripts SQL do banco de dados
+## 🧱 Etapas do projeto
 
-## 🗂️ Scripts disponíveis
+- Levantamento de requisitos
+- Modelagem conceitual (Entidades e Relacionamentos)
+- Diagrama Entidade-Relacionamento (DER)
+- Modelagem lógica e normalização
+- Implementação física no Oracle SQL
+- Definição de PK, FK e constraints
+- Testes de integridade referencial
 
-- 01_criacao_banco.sql → Criação do banco de dados
+## 🗂️ Estrutura do repositório
+
+- docs/ → Documentação e modelos
+- imagens/ → DER e modelagem visual
+- scripts/ → Scripts SQL Oracle
 
 ## ⚙️ Tecnologias utilizadas
 
-- SQL (Oracle Database)
+- Oracle Database
+- SQL
 - Git / GitHub
 
 ## 🚀 Objetivo
-Praticar modelagem e estruturação de banco de dados relacional com organização de projeto no GitHub.
+Demonstrar conhecimento completo em modelagem de banco de dados relacional, com foco em estrutura, integridade e boas práticas.
 
 ## 👩‍💻 Autora
 Júlia Fernandes
+
+## 📎 Observação
+Este projeto inclui modelagem conceitual, lógica e física, além de testes de integridade realizados no Oracle SQL.
