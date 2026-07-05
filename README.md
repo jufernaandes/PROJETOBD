@@ -15,8 +15,7 @@ Este projeto tem como objetivo a criação e modelagem de um banco de dados rela
 
 ## ⚙️ Tecnologias utilizadas
 
-- SQL
-- Oracle
+- SQL (Oracle Database)
 - Git / GitHub
 
 ## 🚀 Objetivo
