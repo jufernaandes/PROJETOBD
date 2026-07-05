@@ -30,6 +30,12 @@ O projeto percorre todas as etapas de um ciclo real de desenvolvimento de banco 
 ## 🚀 Objetivo
 Demonstrar conhecimento completo em modelagem de banco de dados relacional, com foco em estrutura, integridade e boas práticas.
 
+## 🖼️ Modelagem do Banco de Dados
+
+### Modelo lógico / DER
+
+![Modelo Lógico](imagens/modelo_logico.png)
+
 ## 👩‍💻 Autora
 Júlia Fernandes
 
