@@ -43,9 +43,7 @@ Júlia Fernandes
 
 ### Relacionamentos (DER)
 
-<p align="center">
-  <img src="imagens/relacionamentos.jpg" alt="Relacionamentos do Banco de Dados" width="900">
-</p>
+
 
 
 ## 📎 Observação
