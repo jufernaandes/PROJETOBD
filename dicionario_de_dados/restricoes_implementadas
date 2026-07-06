@@ -1,1 +1,25 @@
+# Restrições do Banco de Dados
+
+## Objetivo
+
+As restrições foram implementadas para garantir a integridade dos dados armazenados no banco de dados, evitando inconsistências e assegurando o cumprimento das regras de negócio definidas na modelagem.
+
+Os testes das restrições foram realizados utilizando comandos SQL no Oracle Database, validando cenários de inserções válidas e inválidas.
+
+---
+
+# Tipos de Restrições Implementadas
+
+## Chave Primária (PRIMARY KEY)
+
+As chaves primárias garantem a identificação única de cada registro dentro das tabelas.
+
+Foram realizados testes de inserção de valores duplicados para verificar o bloqueio de registros com o mesmo identificador.
+
+Exemplo de validação:
+
+- Tentativa de inserir um registro com uma chave primária já existente.
+- Resultado esperado: erro de violação de chave única.
+
+Erro validado:
 
