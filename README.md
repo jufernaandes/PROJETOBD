@@ -42,9 +42,9 @@ Júlia Fernandes
 </p>
 
 ### Relacionamentos (DER)
-
-
-
+<p align="center">
+  <img src="imagens/Tabela_relacionamento.png" alt="Relacionamentos do Banco de Dados" width="900">
+</p>
 
 ## 📎 Observação
 Este projeto inclui modelagem conceitual, lógica e física, além de testes de integridade realizados no Oracle SQL.
