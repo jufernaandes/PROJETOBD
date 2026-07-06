@@ -33,12 +33,20 @@ Demonstrar conhecimento completo em modelagem de banco de dados relacional, com 
 ## 👩‍💻 Autora
 Júlia Fernandes
 
-
 ## 🖼️ Modelagem do Banco de Dados
 
-### Modelo lógico / DER
+### Modelo Lógico
 
-![Modelo Lógico](imagens/modelo_logico.png)
+<p align="center">
+  <img src="imagens/modelo_logico_bd.jpg" alt="Modelo Lógico" width="900">
+</p>
+
+### Relacionamentos (DER)
+
+<p align="center">
+  <img src="imagens/relacionamentos.jpg" alt="Relacionamentos do Banco de Dados" width="900">
+</p>
+
 
 ## 📎 Observação
 Este projeto inclui modelagem conceitual, lógica e física, além de testes de integridade realizados no Oracle SQL.
