@@ -1,5 +1,7 @@
 # Documentação da Modelagem
 
+Este documento apresenta a estrutura lógica do banco de dados, descrevendo suas entidades, relacionamentos, regras de negócio e restrições implementadas.
+
 ## Entidades
 
 - Ator
@@ -11,10 +13,12 @@
 
 ## Relacionamentos
 
-...
+*A ser documentado.*
 
 ## Regras de Negócio
 
-...
+*A ser documentado.*
 
-## Restrições implementadas
+## Restrições Implementadas
+
+*A ser documentado.*
