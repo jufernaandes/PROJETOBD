@@ -1,25 +1,107 @@
-# Restrições do Banco de Dados
+Restrições do Banco de Dados
 
-## Objetivo
+Restrições de Chave Primária (PRIMARY KEY)
+As chaves primárias garantem que cada registro inserido nas tabelas possua um identificador único.
 
-As restrições foram implementadas para garantir a integridade dos dados armazenados no banco de dados, evitando inconsistências e assegurando o cumprimento das regras de negócio definidas na modelagem.
+Essa restrição impede a existência de registros duplicados e permite a identificação individual de cada entidade.
 
-Os testes das restrições foram realizados utilizando comandos SQL no Oracle Database, validando cenários de inserções válidas e inválidas.
+Testes realizados:
 
----
+Inserção de registros com valores únicos para validação do funcionamento correto.
+Tentativa de inserir um registro utilizando um identificador já existente.
 
-# Tipos de Restrições Implementadas
+Resultado esperado:
 
-## Chave Primária (PRIMARY KEY)
-
-As chaves primárias garantem a identificação única de cada registro dentro das tabelas.
-
-Foram realizados testes de inserção de valores duplicados para verificar o bloqueio de registros com o mesmo identificador.
-
-Exemplo de validação:
-
-- Tentativa de inserir um registro com uma chave primária já existente.
-- Resultado esperado: erro de violação de chave única.
+O banco deve aceitar registros com identificadores únicos.
+O banco deve bloquear registros duplicados.
 
 Erro validado:
 
+ORA-00001: unique constraint violated
+
+Restrições de Chave Estrangeira (FOREIGN KEY)
+
+As chaves estrangeiras garantem a integridade referencial entre as tabelas relacionadas.
+
+Elas impedem que sejam inseridos registros que façam referência a dados inexistentes em outras entidades.
+
+Testes realizados:
+
+Inserção de registros contendo valores de chave estrangeira existentes.
+Tentativa de inserir registros utilizando referências inexistentes.
+
+Resultado esperado:
+
+O banco deve permitir relacionamentos válidos.
+O banco deve impedir referências para registros que não existem.
+
+Erro validado:
+
+ORA-02291: integrity constraint violated - parent key not found
+
+Restrições NOT NULL
+
+As restrições NOT NULL garantem que determinados atributos obrigatórios sempre recebam valores durante a inserção dos registros.
+
+Essa regra evita que informações essenciais sejam armazenadas como vazias.
+
+Testes realizados:
+
+Inserção de registros preenchendo todos os campos obrigatórios.
+Tentativa de inserir registros sem informar valores em atributos obrigatórios.
+
+Resultado esperado:
+
+O banco deve aceitar registros completos.
+O banco deve bloquear registros com campos obrigatórios nulos.
+
+Erro validado:
+
+ORA-01400: cannot insert NULL
+
+Restrições CHECK
+
+As restrições CHECK foram utilizadas para garantir que determinados valores respeitem regras específicas definidas para o sistema.
+
+Elas permitem controlar os valores aceitos pelos atributos, evitando dados inconsistentes.
+
+Testes realizados:
+
+Inserção de valores dentro das condições permitidas.
+Tentativa de inserir valores fora das regras definidas.
+
+Resultado esperado:
+
+O banco deve aceitar valores válidos.
+O banco deve rejeitar valores que violem as regras estabelecidas.
+Integridade Referencial
+
+A integridade referencial garante que os relacionamentos definidos entre as entidades permaneçam consistentes durante as operações realizadas no banco.
+
+Foram realizados testes envolvendo:
+
+Associação entre registros existentes.
+Tentativa de exclusão ou inserção de dados que poderiam quebrar relacionamentos.
+Validação do vínculo entre as tabelas relacionadas.
+
+Resultado esperado:
+
+Os relacionamentos devem permanecer consistentes.
+Registros dependentes não devem gerar inconsistências no banco.
+Testes de Inserção de Dados
+
+Foram realizados testes para validar o comportamento do banco diante de diferentes cenários.
+
+Cenários testados:
+
+Inserção de dados válidos.
+Inserção de dados duplicados.
+Inserção de dados inexistentes em relacionamentos.
+Inserção de valores nulos em campos obrigatórios.
+Inserção de valores fora das regras estabelecidas.
+
+Os testes confirmaram que as restrições implementadas estão funcionando corretamente.
+
+Conclusão
+
+As restrições aplicadas garantem que o banco de dados mantenha seus dados organizados, consistentes e seguros.
