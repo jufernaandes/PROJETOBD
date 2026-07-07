@@ -1,11 +1,6 @@
--- ==========================================================
--- Projeto: Sistema de Gerenciamento de Filmes
--- Banco de Dados: Oracle Database
--- Arquivo: 04_consultas.sql
--- Descrição: Consultas SQL para exploração e análise dos dados.
--- ==========================================================
-
--- Este arquivo será atualizado conforme a evolução do projeto.
+-- ============================================================
+-- CONSULTAS SQL - PROJETO BANCO DE DADOS
+-- ============================================================
 
 -- Consultas planejadas:
 -- • SELECT com filtros (WHERE)
@@ -19,142 +14,197 @@
 -- • Views
 
 
-
 -- ============================================================
--- CONSULTAS SQL - PROJETO BANCO DE DADOS
--- ============================================================
-
-
--- ============================================================
--- 1. CONSULTA SIMPLES - LISTAR TODOS OS FILMES
+-- 1. SELECT COM FILTRO (WHERE)
 -- ============================================================
 
-SELECT * FROM filme;
+-- Listar atores brasileiros
 
--- ============================================================
--- 2. CONSULTA COM FILTRO (WHERE)
--- Buscar diretores de um determinado país
--- ============================================================
+SELECT *
+FROM ATOR
+WHERE PAIS_ATOR = 'GBR';
+
+
+-- Listar diretores de uma cidade específica
 
 SELECT *
 FROM DIRETOR
-WHERE PAIS_DIRETOR = 'USA';
+WHERE CIDADE_DIRETOR = 'Nova York';
+
 
 -- ============================================================
--- 3. ORDENAÇÃO DOS RESULTADOS (ORDER BY)
--- Listar filmes do mais recente para o mais antigo
+-- 2. ORDER BY
 -- ============================================================
 
-SELECT * FROM premiacao;
+-- Listar filmes em ordem alfabética
 
-SELECT P_COD_PREMIO, ANO
-FROM PREMIACAO
-ORDER BY ANO DESC;
+SELECT TITULO
+FROM FILME
+ORDER BY TITULO;
 
--- ============================================================
--- 4. BUSCA POR TEXTO (LIKE)
--- Buscar filmes que possuem determinada palavra no título
--- ============================================================
 
-SELECT * FROM FILME;
+-- Listar atores em ordem decrescente
 
-SELECT * FROM FILME
-WHERE TITULO LIKE '%Cisn%';
+SELECT NOME_ATOR
+FROM ATOR
+ORDER BY NOME_ATOR DESC;
+
 
 -- ============================================================
--- 5. CONTAGEM DE REGISTROS (COUNT)
--- Quantidade total de filmes cadastrados
+-- 3. GROUP BY
 -- ============================================================
 
-SELECT COUNT (*) AS TOTAL_FILMES
-FROM FILME;
+-- Quantidade de atores por país
+
+SELECT
+    PAIS_ATOR,
+    COUNT(*) AS TOTAL_ATORES
+FROM ATOR
+GROUP BY PAIS_ATOR;
+
+
+-- Quantidade de diretores por país
+
+SELECT
+    PAIS_DIRETOR,
+    COUNT(*) AS TOTAL_DIRETORES
+FROM DIRETOR
+GROUP BY PAIS_DIRETOR;
+
 
 -- ============================================================
--- 6. AGRUPAMENTO (GROUP BY)
--- Quantidade de filmes por diretor
+-- 4. HAVING
 -- ============================================================
 
-SELECT * FROM DIRETOR; 
+-- Países com mais de um ator cadastrado
 
-SELECT 
-    COD_DIRETOR,
-    COUNT(*) AS QUANTIDADE_FILMES
-    FROM FILME 
-    GROUP BY COD_DIRETOR;
-    
--- ============================================================
--- 7. FILTRO DE AGRUPAMENTO (HAVING)
--- Diretores com mais de um filme cadastrado
--- ============================================================
+SELECT
+    PAIS_ATOR,
+    COUNT(*) AS TOTAL_ATORES
+FROM ATOR
+GROUP BY PAIS_ATOR
+HAVING COUNT(*) > 1;
 
-SELECT 
-    COD_DIRETOR,
-    COUNT(*) AS QUANTIDADE_FILMES
-    FROM FILME
-    GROUP BY COD_DIRETOR
-    HAVING COUNT (*)> 1;
-    
--- ============================================================
--- 8. INNER JOIN
--- Exibir filmes e seus respectivos diretores
--- ============================================================
-
-SELECT * FROM DIRETOR;
-SELECT * FROM FILME;
-
-SELECT 
-   F.TITULO,
-   D.NOME_DIRETOR AS DIRETOR
-   FROM FILME F
-   INNER JOIN DIRETOR D
-   ON F.COD_DIRETOR = D.COD_DIRETOR;
 
 -- ============================================================
--- 9. INNER JOIN COM 3 TABELAS
--- Exibir filmes e seus respectivos atores
+-- 5. INNER JOIN
 -- ============================================================
 
-SELECT * FROM PARTICIPACAO;
-SELECT * FROM FILME;
-SELECT * FROM ATOR;
+-- Filmes e seus respectivos diretores
 
 SELECT
     F.TITULO,
-    A.NOME_ATOR AS ATOR
-    FROM FILME F
-    INNER JOIN PARTICIPACAO P 
-    ON F.COD_FILME = P.F_COD_FILME 
-    INNER JOIN ATOR A
-    ON P.A_COD_ATOR = A.COD_ATOR;
-    
+    D.NOME_DIRETOR
+FROM FILME F
+INNER JOIN DIRETOR D
+ON F.COD_DIRETOR = D.COD_DIRETOR;
+
+
+-- Filmes e atores participantes
+
+SELECT
+    F.TITULO,
+    A.NOME_ATOR
+FROM PARTICIPACAO P
+INNER JOIN FILME F
+ON P.F_COD_FILME = F.COD_FILME
+INNER JOIN ATOR A
+ON P.A_COD_ATOR = A.COD_ATOR;
+
+
+-- Premiações recebidas por cada filme
+
+SELECT
+    F.TITULO,
+    PR.DESCRICAO_PREMIO,
+    PM.ANO
+FROM PREMIACAO PM
+INNER JOIN FILME F
+ON PM.F_COD_FILME = F.COD_FILME
+INNER JOIN PREMIO PR
+ON PM.P_COD_PREMIO = PR.COD_PREMIO;
+
+
 -- ============================================================
--- 10. LEFT JOIN
--- Exibir filmes com ou sem premiações
+-- 6. LEFT JOIN
 -- ============================================================
 
-SELECT * FROM FILME;
-SELECT * FROM PREMIO;
+-- Filmes e suas premiações (incluindo filmes sem premiação)
+
+SELECT
+    F.TITULO,
+    PR.DESCRICAO_PREMIO
+FROM FILME F
+LEFT JOIN PREMIACAO PM
+ON F.COD_FILME = PM.F_COD_FILME
+LEFT JOIN PREMIO PR
+ON PM.P_COD_PREMIO = PR.COD_PREMIO;
+
+
+-- ============================================================
+-- 7. FUNÇÕES DE AGREGAÇÃO
+-- ============================================================
+
+-- COUNT - Total de filmes cadastrados
+
+SELECT COUNT(*) AS TOTAL_FILMES
+FROM FILME;
+
+
+-- AVG - Média do ano das premiações
 SELECT * FROM PREMIACAO;
 
-SELECT 
+SELECT AVG(ANO) AS MEDIA_ANO_PREMIACAO
+FROM PREMIACAO;
+
+
+-- SUM - Soma dos anos das premiações
+
+SELECT SUM(ANO) AS SOMA_ANOS_PREMIACAO
+FROM PREMIACAO;
+
+
+-- ============================================================
+-- 8. SUBQUERIES
+-- ============================================================
+
+-- Filmes dirigidos por diretores americanos
+SELECT * FROM DIRETOR;
+
+SELECT TITULO
+FROM FILME
+WHERE COD_DIRETOR IN (
+    SELECT COD_DIRETOR
+    FROM DIRETOR
+    WHERE PAIS_DIRETOR = 'USA'
+);
+
+
+-- Atores que participaram de algum filme
+
+SELECT NOME_ATOR
+FROM ATOR
+WHERE COD_ATOR IN (
+    SELECT A_COD_ATOR
+    FROM PARTICIPACAO
+);
+
+
+-- ============================================================
+-- 9. VIEW
+-- ============================================================
+
+CREATE VIEW VW_FILMES_DIRETORES AS
+SELECT
+    F.COD_FILME,
     F.TITULO,
-    PR.DESCRICAO_PREMIO AS PREMIO
-    FROM FILME F
-    LEFT JOIN PREMIACAO PE
-    ON F.COD_FILME = PE. F_COD_FILME
-    LEFT JOIN PREMIO PR
-    ON PE.P_COD_PREMIO = PR.COD_PREMIO;
+    D.NOME_DIRETOR
+FROM FILME F
+INNER JOIN DIRETOR D
+ON F.COD_DIRETOR = D.COD_DIRETOR;
 
 
-    
-    
+-- Consultar a View
 
-
-
-
-
-
-
-
-
-
+SELECT *
+FROM VW_FILMES_DIRETORES;
