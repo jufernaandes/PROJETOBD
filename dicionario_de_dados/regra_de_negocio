@@ -1,1 +1,14 @@
+# Regras do Negócio
 
+O projeto de banco de dados deve atender às seguintes regras de negócio:
+
+1. O banco de dados deve controlar todas as informações relacionadas ao Oscar.
+2. Os possíveis prêmios do Oscar (apenas para simplificar) são: Melhor Filme, Melhor Diretor, Melhor Ator e Melhor Atriz. Cada prêmio possui um código de identificação.
+3. Deverá ser possível cadastrar no banco uma quantidade ilimitada de Filmes, Diretores, Atores e Atrizes.
+4. Não necessariamente os Filmes, Diretores, Atores e Atrizes cadastrados deverão ser os premiados. No entanto, por se tratar de um banco de dados do Oscar, os Filmes, Diretores, Atores e Atrizes armazenados devem ser necessariamente aqueles que foram indicados para algum dos 4 prêmios.
+5. Cada ator pode participar de um ou mais filmes.
+6. Apesar de um ator poder ser também um diretor, ele deverá ser cadastrado separadamente como ator e como diretor.
+7. Deve ser fácil identificar, para cada filme, seu respectivo diretor.
+8. Cada ator/atriz e diretor possuem um código de identificação, nome completo, nacionalidade (cidade e país). No caso de ator/atriz, deve ser registrado também o gênero.
+9. Cada filme pode ganhar um dos 4 prêmios definidos anteriormente, em um determinado ano de premiação. Um mesmo filme não pode ganhar um mesmo prêmio em mais de um ano.
+10. Cada filme pode ser dirigido por apenas 1 diretor.
