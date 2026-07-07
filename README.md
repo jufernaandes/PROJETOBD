@@ -17,7 +17,7 @@ O projeto percorre todas as etapas de um ciclo real de desenvolvimento de banco 
 
 ## 🗂️ Estrutura do repositório
 
-- docs/ → Documentação e modelos
+- dicionario_de_dados/ → Documentação 
 - imagens/ → DER e modelagem visual
 - scripts/ → Scripts SQL Oracle
 
