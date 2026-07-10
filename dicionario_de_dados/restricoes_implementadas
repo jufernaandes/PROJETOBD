@@ -1,107 +1,40 @@
-Restrições do Banco de Dados
+# Restrições do Banco de Dados
 
-Restrições de Chave Primária (PRIMARY KEY)
-As chaves primárias garantem que cada registro inserido nas tabelas possua um identificador único.
+| Restrição | Objetivo | Testes Realizados | Resultado Esperado | Erro Validado |
+|-----------|----------|-------------------|--------------------|---------------|
+| **PRIMARY KEY (PK)** | Garantir que cada registro possua um identificador único, impedindo duplicidades. | Inserção de registros com identificadores únicos e tentativa de inserir um identificador já existente. | O banco deve aceitar identificadores únicos e rejeitar registros duplicados. | `ORA-00001: unique constraint violated` |
+| **FOREIGN KEY (FK)** | Garantir a integridade referencial entre as tabelas relacionadas. | Inserção de registros com chaves estrangeiras válidas e tentativa de utilizar referências inexistentes. | O banco deve permitir relacionamentos válidos e impedir referências inexistentes. | `ORA-02291: integrity constraint violated - parent key not found` |
+| **NOT NULL** | Garantir que os campos obrigatórios sempre recebam um valor. | Inserção de registros completos e tentativa de inserir valores nulos em campos obrigatórios. | O banco deve aceitar registros completos e rejeitar valores nulos. | `ORA-01400: cannot insert NULL` |
+| **CHECK** | Garantir que determinados atributos respeitem as regras de negócio definidas. | Inserção de valores válidos e tentativa de inserir valores fora das regras estabelecidas. | O banco deve aceitar apenas valores válidos. | Erro de violação da restrição `CHECK`. |
 
-Essa restrição impede a existência de registros duplicados e permite a identificação individual de cada entidade.
+---
 
-Testes realizados:
+# Integridade Referencial
 
-Inserção de registros com valores únicos para validação do funcionamento correto.
-Tentativa de inserir um registro utilizando um identificador já existente.
+Foram realizados testes para validar a consistência dos relacionamentos entre as tabelas.
 
-Resultado esperado:
+| Cenário | Resultado Esperado |
+|----------|--------------------|
+| Associação entre registros existentes | Os relacionamentos devem ser criados corretamente. |
+| Inserção de referências inexistentes | O banco deve impedir a operação. |
+| Exclusão de registros relacionados | O banco deve preservar a integridade referencial conforme as restrições definidas. |
 
-O banco deve aceitar registros com identificadores únicos.
-O banco deve bloquear registros duplicados.
+---
 
-Erro validado:
+# Testes de Inserção de Dados
 
-ORA-00001: unique constraint violated
+Os seguintes cenários foram executados durante a validação do banco de dados:
 
-Restrições de Chave Estrangeira (FOREIGN KEY)
+| Cenário | Status |
+|----------|--------|
+| Inserção de dados válidos | ✅ Validado |
+| Inserção de registros duplicados | ✅ Validado |
+| Inserção de referências inexistentes | ✅ Validado |
+| Inserção de valores nulos em campos obrigatórios | ✅ Validado |
+| Inserção de valores fora das regras definidas | ✅ Validado |
 
-As chaves estrangeiras garantem a integridade referencial entre as tabelas relacionadas.
+---
 
-Elas impedem que sejam inseridos registros que façam referência a dados inexistentes em outras entidades.
+# Conclusão
 
-Testes realizados:
-
-Inserção de registros contendo valores de chave estrangeira existentes.
-Tentativa de inserir registros utilizando referências inexistentes.
-
-Resultado esperado:
-
-O banco deve permitir relacionamentos válidos.
-O banco deve impedir referências para registros que não existem.
-
-Erro validado:
-
-ORA-02291: integrity constraint violated - parent key not found
-
-Restrições NOT NULL
-
-As restrições NOT NULL garantem que determinados atributos obrigatórios sempre recebam valores durante a inserção dos registros.
-
-Essa regra evita que informações essenciais sejam armazenadas como vazias.
-
-Testes realizados:
-
-Inserção de registros preenchendo todos os campos obrigatórios.
-Tentativa de inserir registros sem informar valores em atributos obrigatórios.
-
-Resultado esperado:
-
-O banco deve aceitar registros completos.
-O banco deve bloquear registros com campos obrigatórios nulos.
-
-Erro validado:
-
-ORA-01400: cannot insert NULL
-
-Restrições CHECK
-
-As restrições CHECK foram utilizadas para garantir que determinados valores respeitem regras específicas definidas para o sistema.
-
-Elas permitem controlar os valores aceitos pelos atributos, evitando dados inconsistentes.
-
-Testes realizados:
-
-Inserção de valores dentro das condições permitidas.
-Tentativa de inserir valores fora das regras definidas.
-
-Resultado esperado:
-
-O banco deve aceitar valores válidos.
-O banco deve rejeitar valores que violem as regras estabelecidas.
-Integridade Referencial
-
-A integridade referencial garante que os relacionamentos definidos entre as entidades permaneçam consistentes durante as operações realizadas no banco.
-
-Foram realizados testes envolvendo:
-
-Associação entre registros existentes.
-Tentativa de exclusão ou inserção de dados que poderiam quebrar relacionamentos.
-Validação do vínculo entre as tabelas relacionadas.
-
-Resultado esperado:
-
-Os relacionamentos devem permanecer consistentes.
-Registros dependentes não devem gerar inconsistências no banco.
-Testes de Inserção de Dados
-
-Foram realizados testes para validar o comportamento do banco diante de diferentes cenários.
-
-Cenários testados:
-
-Inserção de dados válidos.
-Inserção de dados duplicados.
-Inserção de dados inexistentes em relacionamentos.
-Inserção de valores nulos em campos obrigatórios.
-Inserção de valores fora das regras estabelecidas.
-
-Os testes confirmaram que as restrições implementadas estão funcionando corretamente.
-
-Conclusão
-
-As restrições aplicadas garantem que o banco de dados mantenha seus dados organizados, consistentes e seguros.
+Os testes realizados confirmaram que todas as restrições implementadas funcionam conforme o esperado, garantindo a **integridade**, **consistência** e **confiabilidade** dos dados armazenados no banco de dados.
