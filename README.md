@@ -30,9 +30,6 @@ O projeto percorre todas as etapas de um ciclo real de desenvolvimento de banco 
 ## 🚀 Objetivo
 Demonstrar conhecimento completo em modelagem de banco de dados relacional, com foco em estrutura, integridade e boas práticas.
 
-## 👩‍💻 Autora
-Júlia Fernandes
-
 ## 🖼️ Modelagem do Banco de Dados
 
 ### Modelo Lógico
@@ -48,3 +45,6 @@ Júlia Fernandes
 
 ## 📎 Observação
 Este projeto inclui modelagem conceitual, lógica e física, além de testes de integridade realizados no Oracle SQL.
+
+## 👩‍💻 Autora
+Júlia Fernandes
